@@ -1,0 +1,41 @@
+package mapred.basic;
+
+import java.io.IOException;
+
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.LongWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Mapper;
+
+//Mapper
+/*
+ * 1. Mapper클래스를 상속한다.
+ * => mapper에 전달될 input테이터의 key, value타입과
+ *    mapper의 실행결과로 출력되는 output데이터의 key, value타입을 정의
+ */
+
+/*
+ * 2. map메소드를 오버라이딩해서 map작업을수행하면서 처리할 내용을 구현
+ * => 입력된 값을 분석하기 위한 메소드 : 입력된 데이터에 조건을 적용해서 
+ * 							       원하는 데이터를 추출하기 위한 반복작업 수행 
+ *    map메소드의 매개변수 - 입력데이터 키, 입력값, context
+ *									      -------?   									 
+ *	  Context : 맵리듀스 작업을 수행하며 맵메소드의 실행결과
+ *				즉, 출력데이터를 기록하고, shuffle하고, 리듀서로 내보내는 작업을 수행하는 객체
+ *				프레임워크 내부에서 기본작업을 처리하는 객체 
+ */
+public class WordCountMapper
+		extends Mapper<LongWritable, Text, Text, IntWritable>{
+
+	@Override
+	protected void map(LongWritable key, Text value, Mapper<LongWritable, Text, Text, IntWritable>.Context context)
+			throws IOException, InterruptedException {
+		// TODO Auto-generated method stub
+		super.map(key, value, context);
+	}
+	//Int형데이터로는 모자라서 Long타입으로 LongWritable
+	//LongWritable과 Text가 mapper로 들어가는 input data타입. 
+	//3번째 변수 key는(output) Text타입
+	//4번째 변수 Value는(output) intWritable
+
+}

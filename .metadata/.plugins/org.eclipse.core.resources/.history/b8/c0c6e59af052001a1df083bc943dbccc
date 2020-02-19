@@ -1,0 +1,5 @@
+package mapred.basic;
+
+public class WordCountMapper {
+
+}

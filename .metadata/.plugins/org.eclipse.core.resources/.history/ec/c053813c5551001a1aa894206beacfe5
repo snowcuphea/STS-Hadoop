@@ -1,0 +1,46 @@
+package hdfs.exam;
+
+import java.io.IOException;
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FSDataInputStream;
+import org.apache.hadoop.fs.FSDataOutputStream;
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.Path;
+
+/*
+ * hadoop의 hdfs를 api로 제어
+ * 	- hadoop hdfs에 api를 이용해서 파일을 생성 
+ * 	- 사용자가 지정하는 경로에 파일 생성
+ * 
+ */
+
+public class HDFCopyTest {
+
+	public static void main(String[] args) {
+		Configuration conf = new Configuration();
+		
+		FileSystem hdfs = null;
+
+		FSDataOutputStream hdfsout = null; 
+		FSDataInputStream hdfsin = null; 
+		try {
+			hdfs = FileSystem.get(conf);
+	
+			Path pathin = new Path("output.txt");
+			hdfsin = hdfs.open(pathin);
+			
+			Path pathout = new Path(args[0]);
+			hdfsout = hdfs.create(pathout);
+
+			hdfsin.read();
+			hdfsout.writeUTF(hdfsin.read(););
+		
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+
+	}
+
+}
